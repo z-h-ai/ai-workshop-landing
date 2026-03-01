@@ -128,15 +128,51 @@
   footer a { color: var(--accent); text-decoration: none; }
 
   /* Mobile */
+  /* Tablet */
   @media (max-width: 768px) {
     .hero h1 { font-size: 1.8em; }
     .hero { padding: 60px 0 50px; }
     section { padding: 50px 0; }
+    .section-title { margin-bottom: 36px; }
+    .section-title h2 { font-size: 1.6em; }
     .flow-step::after { display: none; }
-    .flow-steps { flex-direction: column; align-items: center; }
+    .flow-steps { flex-direction: column; align-items: center; gap: 8px; }
+    .flow-step { min-width: auto; width: 100%; max-width: 280px; padding: 12px 10px; background: var(--bg-alt); border-radius: 8px; }
+    .pain-grid, .case-grid, .trust-grid { grid-template-columns: 1fr; }
+    .steps-row { flex-direction: column; align-items: center; }
+    .solution-box { padding: 24px; }
+    .solution-box .big-text { font-size: 1.1em; }
+    .not-list { flex-direction: column; align-items: center; }
+    /* 竞品对比表：手机端改成卡片式 */
     .compare-table { font-size: .8em; }
-    .compare-table th, .compare-table td { padding: 10px 8px; }
-    .version-table { font-size: .8em; }
+    .compare-table th, .compare-table td { padding: 10px 8px; white-space: nowrap; }
+    /* 方案对比表：手机端缩小 */
+    .version-table { font-size: .78em; }
+    .version-table th, .version-table td { padding: 10px 8px; }
+    .script-box { padding: 20px; }
+    .script-box blockquote { font-size: .95em; }
+  }
+
+  /* Small phone */
+  @media (max-width: 480px) {
+    .container { padding: 0 16px; }
+    .hero h1 { font-size: 1.5em; }
+    .hero .subtitle { font-size: 1em; }
+    .hero .cta-btn { padding: 14px 32px; font-size: 1em; }
+    .hero { padding: 48px 0 40px; }
+    section { padding: 40px 0; }
+    .section-title h2 { font-size: 1.4em; }
+    .pain-card { padding: 20px; }
+    .pain-card h3 { font-size: 1.05em; }
+    .case-card { padding: 20px; }
+    .trust-card { padding: 16px; }
+    /* 表格允许横向滚动，加提示 */
+    .compare-table th, .compare-table td { padding: 8px 6px; font-size: .75em; }
+    .version-table th, .version-table td { padding: 8px 6px; font-size: .72em; }
+    .cta-section h2 { font-size: 1.5em; }
+    .step-item h3 { font-size: 1em; }
+    .step-item p { font-size: .85em; }
+    .faq-item summary { font-size: .95em; }
   }
 </style>
 </head>
