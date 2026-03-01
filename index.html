@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI共创工作坊 · 把 AI 装进你每天的工作里</title>
+<meta name="description" content="用你的真实业务场景，现场做出能用的 AI 工具。最快10天落地，不是培训班，不是外包，是带你一起做。">
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --accent: #f59e0b;
+    --bg: #ffffff;
+    --bg-alt: #f8fafc;
+    --bg-dark: #0f172a;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --text-white: #f1f5f9;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0,0,0,.1), 0 2px 4px -2px rgba(0,0,0,.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -4px rgba(0,0,0,.1);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; color: var(--text); line-height: 1.7; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+  
+  /* Hero */
+  .hero { background: linear-gradient(135deg, var(--bg-dark) 0%, #1e3a5f 100%); color: var(--text-white); padding: 100px 0 80px; text-align: center; }
+  .hero h1 { font-size: 2.8em; font-weight: 800; margin-bottom: 16px; line-height: 1.3; }
+  .hero h1 span { color: var(--accent); }
+  .hero .subtitle { font-size: 1.25em; color: #94a3b8; max-width: 600px; margin: 0 auto 40px; }
+  .hero .cta-btn { display: inline-block; background: var(--accent); color: #000; font-size: 1.1em; font-weight: 700; padding: 16px 40px; border-radius: 50px; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .hero .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,158,11,.4); }
+  .hero .cta-sub { display: block; margin-top: 12px; font-size: .9em; color: #94a3b8; }
+
+  /* Section */
+  section { padding: 80px 0; }
+  section:nth-child(even) { background: var(--bg-alt); }
+  .section-title { text-align: center; margin-bottom: 56px; }
+  .section-title h2 { font-size: 2em; font-weight: 800; margin-bottom: 12px; }
+  .section-title p { color: var(--text-light); font-size: 1.1em; max-width: 600px; margin: 0 auto; }
+
+  /* Pain Points */
+  .pain-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .pain-card { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); border-left: 4px solid var(--danger); }
+  .pain-card h3 { font-size: 1.2em; margin-bottom: 12px; color: var(--danger); }
+  .pain-card ul { list-style: none; }
+  .pain-card ul li { padding: 6px 0; padding-left: 20px; position: relative; color: var(--text-light); }
+  .pain-card ul li::before { content: "•"; position: absolute; left: 0; color: var(--danger); font-weight: bold; }
+  .pain-card .fear { margin-top: 16px; padding: 12px 16px; background: #fef2f2; border-radius: 8px; font-weight: 600; color: var(--danger); font-size: .95em; }
+
+  /* Solution */
+  .solution-box { background: #fff; border-radius: var(--radius); padding: 40px; box-shadow: var(--shadow-lg); text-align: center; max-width: 700px; margin: 0 auto 48px; }
+  .solution-box .big-text { font-size: 1.3em; font-weight: 700; margin-bottom: 16px; line-height: 1.6; }
+  .not-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 20px; }
+  .not-item { background: var(--bg-alt); padding: 12px 20px; border-radius: 50px; font-size: .95em; }
+  .not-item strong { color: var(--primary); }
+
+  /* Compare Table */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: .95em; }
+  .compare-table th, .compare-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); }
+  .compare-table th { background: var(--bg-dark); color: #fff; font-weight: 600; }
+  .compare-table tr:last-child { background: #eff6ff; font-weight: 700; }
+  .compare-table tr:last-child td { color: var(--primary); }
+  .compare-table .problem-cell { color: var(--danger); font-size: .9em; }
+
+  /* Flow */
+  .flow-steps { display: flex; flex-wrap: wrap; gap: 0; justify-content: center; margin-bottom: 40px; }
+  .flow-step { flex: 1; min-width: 150px; text-align: center; padding: 20px 10px; position: relative; }
+  .flow-step::after { content: "→"; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); font-size: 1.4em; color: var(--primary); font-weight: bold; }
+  .flow-step:last-child::after { display: none; }
+  .flow-num { display: inline-flex; width: 40px; height: 40px; background: var(--primary); color: #fff; border-radius: 50%; align-items: center; justify-content: center; font-weight: 700; font-size: 1.1em; margin-bottom: 8px; }
+  .flow-step .label { font-size: .85em; color: var(--text-light); }
+  .flow-step .name { font-weight: 700; font-size: .95em; }
+
+  /* Version Compare */
+  .version-table { width: 100%; border-collapse: collapse; }
+  .version-table th, .version-table td { padding: 14px 16px; text-align: center; border-bottom: 1px solid var(--border); }
+  .version-table th:first-child, .version-table td:first-child { text-align: left; font-weight: 600; }
+  .version-table th { background: var(--primary); color: #fff; }
+  .version-table th:nth-child(2) { background: #3b82f6; }
+  .version-table th:nth-child(3) { background: var(--primary-dark); }
+  .version-table tr:hover { background: #f0f9ff; }
+
+  /* Cases */
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+  .case-card { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
+  .case-card .tag { display: inline-block; background: #eff6ff; color: var(--primary); padding: 4px 12px; border-radius: 50px; font-size: .8em; font-weight: 600; margin-bottom: 12px; }
+  .case-card h3 { margin-bottom: 8px; }
+  .case-card .client { color: var(--text-light); font-size: .9em; margin-bottom: 12px; }
+  .case-card .result { margin-top: 16px; padding: 12px 16px; background: #ecfdf5; border-radius: 8px; color: var(--success); font-weight: 700; }
+
+  /* Trust */
+  .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+  .trust-card { background: #fff; border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); text-align: center; }
+  .trust-card .icon { font-size: 2em; margin-bottom: 12px; }
+  .trust-card h4 { margin-bottom: 8px; }
+  .trust-card p { color: var(--text-light); font-size: .9em; }
+
+  /* Script */
+  .script-box { background: #fff; border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); margin-bottom: 24px; border-left: 4px solid var(--primary); }
+  .script-box .label { font-size: .85em; color: var(--primary); font-weight: 700; margin-bottom: 8px; }
+  .script-box blockquote { font-style: italic; color: var(--text); line-height: 1.8; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--border); padding: 20px 0; }
+  .faq-item summary { font-weight: 700; cursor: pointer; font-size: 1.05em; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .faq-item summary::before { content: "+"; display: inline-flex; width: 24px; height: 24px; background: var(--primary); color: #fff; border-radius: 50%; align-items: center; justify-content: center; font-size: .9em; flex-shrink: 0; }
+  .faq-item[open] summary::before { content: "−"; }
+  .faq-item p { padding: 12px 0 0 32px; color: var(--text-light); }
+
+  /* CTA */
+  .cta-section { background: linear-gradient(135deg, var(--bg-dark) 0%, #1e3a5f 100%); color: var(--text-white); padding: 80px 0; text-align: center; }
+  .cta-section h2 { font-size: 2em; margin-bottom: 40px; }
+  .steps-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; margin-bottom: 48px; }
+  .step-item { flex: 1; min-width: 200px; max-width: 280px; }
+  .step-num { display: inline-flex; width: 48px; height: 48px; background: var(--accent); color: #000; border-radius: 50%; align-items: center; justify-content: center; font-weight: 800; font-size: 1.3em; margin-bottom: 12px; }
+  .step-item h3 { margin-bottom: 8px; }
+  .step-item p { color: #94a3b8; font-size: .95em; }
+  .cta-section .cta-btn { display: inline-block; background: var(--accent); color: #000; font-size: 1.15em; font-weight: 700; padding: 18px 48px; border-radius: 50px; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+  .cta-section .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,158,11,.4); }
+
+  /* Footer */
+  footer { background: var(--bg-dark); color: #94a3b8; padding: 40px 0; text-align: center; font-size: .9em; }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.8em; }
+    .hero { padding: 60px 0 50px; }
+    section { padding: 50px 0; }
+    .flow-step::after { display: none; }
+    .flow-steps { flex-direction: column; align-items: center; }
+    .compare-table { font-size: .8em; }
+    .compare-table th, .compare-table td { padding: 10px 8px; }
+    .version-table { font-size: .8em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <h1>把 AI 装进你<span>每天的工作</span>里</h1>
+    <p class="subtitle">AI 已经从"要不要做"变成了"谁先做完谁先赢"。<br>用你的真实业务，现场做出能用的 AI 工具。</p>
+    <a href="#cta" class="cta-btn">预约免费诊断咨询</a>
+    <span class="cta-sub">1小时线上会议 · 零费用 · 零风险</span>
+  </div>
+</section>
+
+<!-- Pain Points -->
+<section id="pain">
+  <div class="container">
+    <div class="section-title">
+      <h2>你可能正在经历这些</h2>
+      <p>不同角色，不同焦虑。看看哪个说的是你。</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <h3>👔 老板 / 决策者</h3>
+        <ul>
+          <li>该投多少？投在哪个环节？</li>
+          <li>怎么判断效果？ROI 怎么算？</li>
+          <li>花了钱，最后就做了个培训？</li>
+        </ul>
+        <div class="fear">最怕：花了钱没看到东西</div>
+      </div>
+      <div class="pain-card">
+        <h3>📋 部门负责人</h3>
+        <ul>
+          <li>哪些场景真的适合 AI？</li>
+          <li>试了几个工具，团队推不下去</li>
+          <li>怕选错方向，搞半年白折腾</li>
+        </ul>
+        <div class="fear">最怕：试了没效果还得背锅</div>
+      </div>
+      <div class="pain-card">
+        <h3>💻 一线干活的人</h3>
+        <ul>
+          <li>ChatGPT 不敢用在正式业务</li>
+          <li>工具太多，不知道选哪个</li>
+          <li>学了概念，不是学"我的活"</li>
+        </ul>
+        <div class="fear">最怕：学完了还是不会用</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solution -->
+<section id="solution">
+  <div class="container">
+    <div class="section-title">
+      <h2>我们怎么解决</h2>
+    </div>
+    <div class="solution-box">
+      <div class="big-text">带着你的团队，用你自己的业务数据，<br>现场做出能用的 AI 工具。</div>
+      <p style="color:var(--text-light);">你拿走的不是一份PPT报告，是马上能干活的 AI 工具 + 你的团队学会的方法。</p>
+      <div class="not-list">
+        <div class="not-item">不是培训班 — <strong>现场做出东西</strong></div>
+        <div class="not-item">不是外包 — <strong>带着你一起做</strong></div>
+        <div class="not-item">不是卖工具 — <strong>定制你的工作流</strong></div>
+      </div>
+    </div>
+
+    <h3 style="text-align:center;margin-bottom:16px;font-size:1.3em;">和你正在考虑的方案比一比</h3>
+    <div style="overflow-x:auto;">
+      <table class="compare-table">
+        <thead><tr><th>方案</th><th>费用</th><th>周期</th><th>你拿到什么</th><th>问题在哪</th></tr></thead>
+        <tbody>
+          <tr><td>AI 网课</td><td>几百-几千</td><td>自学</td><td>概念知识</td><td class="problem-cell">学完还是不会用</td></tr>
+          <tr><td>通用 SaaS</td><td>几百-几千/月</td><td>即买即用</td><td>标准功能</td><td class="problem-cell">不懂你的流程</td></tr>
+          <tr><td>软件外包</td><td>15-30万</td><td>8-12周</td><td>定制软件</td><td class="problem-cell">贵、慢、沟通难</td></tr>
+          <tr><td>招 AI 工程师</td><td>30万+/年</td><td>3个月起</td><td>一个人</td><td class="problem-cell">贵10倍，还不一定懂业务</td></tr>
+          <tr><td>大厂咨询</td><td>50万起</td><td>数月</td><td>一份PPT</td><td class="problem-cell">卖报告不卖结果</td></tr>
+          <tr><td><strong>AI 共创工作坊</strong></td><td><strong>详询</strong></td><td><strong>最快10天</strong></td><td><strong>能干活的AI工具 + 方法</strong></td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Flow -->
+<section id="flow">
+  <div class="container">
+    <div class="section-title">
+      <h2>服务流程</h2>
+      <p>五个阶段，从了解你的业务到工具落地，最快10天。</p>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step"><div class="flow-num">1</div><div class="name">免费咨询</div><div class="label">1小时线上</div></div>
+      <div class="flow-step"><div class="flow-num">2</div><div class="name">诊断调研</div><div class="label">5-7天</div></div>
+      <div class="flow-step"><div class="flow-num">3</div><div class="name">工作坊交付</div><div class="label">2天 · 70%实操</div></div>
+      <div class="flow-step"><div class="flow-num">4</div><div class="name">培训交接</div><div class="label">含在工作坊内</div></div>
+      <div class="flow-step"><div class="flow-num">5</div><div class="name">售后陪跑</div><div class="label">30天</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Versions -->
+<section id="versions">
+  <div class="container">
+    <div class="section-title">
+      <h2>两个版本，你选哪个</h2>
+      <p>不确定就先验证，确定了再全面落地。</p>
+    </div>
+    <div style="overflow-x:auto;">
+      <table class="version-table">
+        <thead><tr><th>维度</th><th>入门版 · AI共创工作坊</th><th>进阶版 · AI深度定制工作坊</th></tr></thead>
+        <tbody>
+          <tr><td>一句话</td><td>验证 AI 能不能帮你干活</td><td>把 AI 做成每天用的工具</td></tr>
+          <tr><td>适合</td><td>想先试试的企业</td><td>确定要落地的企业</td></tr>
+          <tr><td>周期</td><td>诊断7天 + 共创2天 + 培训1天</td><td>诊断7天 + 设计3天 + 共创3天 + 培训2天 + 陪跑30天</td></tr>
+          <tr><td>你带走什么</td><td>3-5个 AI 工具 demo</td><td>5-10个生产级工作流</td></tr>
+          <tr><td>交付形态</td><td>飞书机器人 + Skill</td><td>飞书版 / 网页工作台</td></tr>
+          <tr><td>实操比例</td><td>70%</td><td>70%</td></tr>
+          <tr><td>源代码</td><td>✅ 全部交付</td><td>✅ 全部交付</td></tr>
+          <tr><td>售后</td><td>—</td><td>30天技术支持</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Cases -->
+<section id="cases">
+  <div class="container">
+    <div class="section-title">
+      <h2>谁在用</h2>
+      <p>看看和你类似的企业，AI 帮他们解决了什么。</p>
+    </div>
+    <div class="case-grid">
+      <div class="case-card">
+        <span class="tag">深度定制工作坊</span>
+        <h3>律师事务所</h3>
+        <p class="client">某律所 · 8人团队 · 合伙人张律师</p>
+        <p>每天大量时间花在合同审查、案例检索、法律文书起草上。试了 ChatGPT 觉得不够专业。</p>
+        <p style="margin-top:12px;">定制了5个AI工具：合同智能审查、案例检索、文书草拟、函件生成、案件周报。</p>
+        <div class="result">📉 合同审查：1小时 → 2分钟</div>
+      </div>
+      <div class="case-card">
+        <span class="tag">深度定制工作坊</span>
+        <h3>电商运营</h3>
+        <p class="client">某电商 · 12人团队 · 运营总监李总 · 年营收3000万</p>
+        <p>每天写产品描述、做文案、回复客服。知道AI能做，但不知道怎么让团队用起来。</p>
+        <p style="margin-top:12px;">定制了5个AI工具：SKU描述批量生成、主图文案、客服回复、差评应对、周报自动生成。</p>
+        <div class="result">📉 50个SKU描述：一整天 → 5分钟</div>
+      </div>
+      <div class="case-card">
+        <span class="tag">AI共创工作坊</span>
+        <h3>宠物连锁</h3>
+        <p class="client">某宠物连锁 · 2家门店 · 5人团队 · 陈老板</p>
+        <p>每天花2小时想朋友圈文案，每月要办活动但没创意。</p>
+        <p style="margin-top:12px;">AI自动生成宠物内容、策划活动方案、宠物咨询工具。</p>
+        <div class="result">📈 客流和复购提升 30%</div>
+      </div>
+      <div class="case-card">
+        <span class="tag">AI共创工作坊</span>
+        <h3>AR科技公司</h3>
+        <p class="client">某AR科技企业 · 技术+设计团队</p>
+        <p>产品迭代周期长，设计想法到可演示 Demo 之间需要大量开发资源。团队对 AI 有兴趣但不知道怎么融入研发流程。</p>
+        <p style="margin-top:12px;">3次工作坊递进式实战：认知入门 → 讲师带做 Demo → 各组独立路演。实战占比达79%。</p>
+        <div class="result">🚀 团队从"听说过AI"到独立产出产品原型 Demo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section id="trust">
+  <div class="container">
+    <div class="section-title">
+      <h2>为什么是我们</h2>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="icon">🎯</div>
+        <h4>70% 时间在动手做</h4>
+        <p>不是听课，是用你的真实业务现场开发 AI 工具</p>
+      </div>
+      <div class="trust-card">
+        <div class="icon">📦</div>
+        <h4>交付能干活的工具</h4>
+        <p>不是PPT和笔记，是源代码 + 可运行的AI工作流</p>
+      </div>
+      <div class="trust-card">
+        <div class="icon">🤝</div>
+        <h4>陪跑30天</h4>
+        <p>讲完不走，专属群12小时响应，bug修复不限次</p>
+      </div>
+      <div class="trust-card">
+        <div class="icon">🔒</div>
+        <h4>数据在你手里</h4>
+        <p>部署在你的环境，我们不留存任何业务数据</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <h3 style="margin-bottom:20px;">合作背书</h3>
+      <p style="color:var(--text-light);font-size:1.05em;">
+        中国科学技术大学商学院 · AI商业架构师认证合作<br>
+        周至黑客松 · 深圳最大AI爱好者与开发者社区<br>
+        飞书生态合作伙伴
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Script -->
+<section id="script">
+  <div class="container">
+    <div class="section-title">
+      <h2>参加之后，你可以这样说</h2>
+      <p>我们帮你准备好了汇报话术。</p>
+    </div>
+    <div class="script-box">
+      <div class="label">📢 给老板的一段话</div>
+      <blockquote>"我们花了X天，做出了X个 AI 工具，覆盖了核心业务场景。其中最耗时的工作从每天X小时缩短到X分钟。按目前使用情况，每月节省约X小时人工。后续简单的我们自己做，复杂的可以加购。"</blockquote>
+    </div>
+    <div class="script-box">
+      <div class="label">💬 给同事的一段话</div>
+      <blockquote>"以后这个工作不用手动做了，在飞书里跟机器人说一声就行。我教你怎么用，5分钟就会。"</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-title">
+      <h2>常见问题</h2>
+    </div>
+    <div style="max-width:700px;margin:0 auto;">
+      <details class="faq-item" open>
+        <summary>我完全不懂 AI，能参加吗？</summary>
+        <p>我们95%的客户都没有AI背景。你只需要带着你的业务问题来就行。</p>
+      </details>
+      <details class="faq-item">
+        <summary>做出来的工具能直接在公司用吗？</summary>
+        <p>入门版做出的是 demo，验证可行性。进阶版做出的是生产级工具，开完工作坊马上能用。</p>
+      </details>
+      <details class="faq-item">
+        <summary>跟 Coze/Dify 等工具有什么区别？</summary>
+        <p>那些是"给你一堆乐高"。我们是"带你一起把房子盖好"。</p>
+      </details>
+      <details class="faq-item">
+        <summary>什么样的人来参加收获最大？</summary>
+        <p>老板亲自来，带上干活最多的人，带上3-5个同事。带着你最想解决的问题来，我们一起做。</p>
+      </details>
+      <details class="faq-item">
+        <summary>什么情况来了可能白跑一趟？</summary>
+        <p>老板没来派了个"先来看看"的；说不清楚每天在忙什么；想来听课的——这不是培训班。</p>
+      </details>
+      <details class="faq-item">
+        <summary>数据安全怎么保障？</summary>
+        <p>所有数据在你自己的飞书或服务器上，我们不留存任何业务数据。AI调用走你自己的账号。</p>
+      </details>
+      <details class="faq-item">
+        <summary>诊断发现不适合怎么办？</summary>
+        <p>坦诚告知，终止合作，仅结算诊断费用。我们宁可不做这一单。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2>下一步：三步走</h2>
+    <div class="steps-row">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <h3>免费聊一次</h3>
+        <p>1小时线上会议<br>帮你看看哪些活 AI 能干<br>零风险，零费用</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <h3>定制方案</h3>
+        <p>诊断后出方案<br>确认适合再继续<br>不适合我们会直接说</p>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <h3>现场落地</h3>
+        <p>带着你的团队<br>用你的业务<br>现场做出能用的东西</p>
+      </div>
+    </div>
+    <a href="https://z-h-ai.github.io/zhouzhou-product-page/" class="cta-btn" target="_blank">预约免费诊断咨询 →</a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <p>智回科技 · AI共创工作坊</p>
+    <p style="margin-top:8px;"><a href="https://z-h-ai.github.io/zhouzhou-product-page/" target="_blank">产品页</a></p>
+    <p style="margin-top:16px;font-size:.8em;">© 2026 智回科技. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
